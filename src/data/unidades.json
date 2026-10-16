@@ -1,0 +1,43 @@
+{
+  "_nota": "Unidades y tipologías. Superficies de tipología según brochure vigente (27/06/25). Superficie de cada lote según plano de numeración de Jauke (SUP03, 2024). 'rect' = posición del lote sobre la imagen del masterplan en píxeles [x, y, ancho, alto] (imagen de 948 × 534).",
+  "tipologias": {
+    "1": {
+      "lote": 190,
+      "cubierta": 127,
+      "semicubierta": 31,
+      "frente": 11,
+      "profundidad": 17,
+      "pileta": "2,00 × 4,00",
+      "planta": "fotos/plantas/planta-unidad-1.webp"
+    },
+    "2": {
+      "lote": 160,
+      "cubierta": 127,
+      "semicubierta": 27,
+      "frente": 9,
+      "profundidad": 17,
+      "pileta": "4,00 × 2,00",
+      "planta": "fotos/plantas/planta-unidad-2.webp"
+    }
+  },
+  "lotes": [
+    { "n": 1, "tipo": 1, "etapa": 1, "lote": 187, "rect": [125, 325, 107, 157] },
+    { "n": 2, "tipo": 1, "etapa": 1, "lote": 187, "rect": [232, 325, 103, 157] },
+    { "n": 3, "tipo": 1, "etapa": 1, "lote": 187, "rect": [335, 325, 107, 157] },
+    { "n": 4, "tipo": 1, "etapa": 1, "lote": 187, "rect": [442, 325, 106, 157] },
+    { "n": 5, "tipo": 1, "etapa": 1, "lote": 187, "rect": [548, 325, 107, 157] },
+    { "n": 6, "tipo": 1, "etapa": 1, "lote": 187, "rect": [655, 325, 105, 157] },
+    { "n": 7, "tipo": 2, "etapa": 2, "lote": 155, "rect": [760, 325, 87, 157] },
+    { "n": 8, "tipo": 2, "etapa": 2, "lote": 156, "rect": [847, 325, 88, 157] },
+    { "n": 9, "tipo": 2, "etapa": 2, "lote": 156, "rect": [847, 75, 88, 157] },
+    { "n": 10, "tipo": 1, "etapa": 3, "lote": 190, "rect": [740, 75, 107, 157] },
+    { "n": 11, "tipo": 1, "etapa": 3, "lote": 190, "rect": [632, 75, 108, 157] },
+    { "n": 12, "tipo": 1, "etapa": 3, "lote": 190, "rect": [525, 75, 107, 157] },
+    { "n": 13, "tipo": 1, "etapa": 3, "lote": 190, "rect": [418, 75, 107, 157] },
+    { "n": 14, "tipo": 1, "etapa": 3, "lote": 190, "rect": [310, 75, 108, 157] }
+  ],
+  "masterplan": {
+    "w": 948,
+    "h": 534
+  }
+}

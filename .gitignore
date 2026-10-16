@@ -1,0 +1,5 @@
+preview.html
+node_modules/
+.DS_Store
+Thumbs.db
+__pycache__/

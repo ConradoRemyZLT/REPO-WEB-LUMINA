@@ -1,0 +1,17 @@
+{
+  "_nota": "Links y datos de contacto del sitio. Se inyectan en el HTML con {{link:clave}} al hacer el build.",
+  "sitio": "https://www.luminafunes.com/",
+  "whatsapp_numero": "5493412618540",
+  "whatsapp_visible": "+54 9 341 261-8540",
+  "whatsapp": "https://wa.me/5493412618540",
+  "email": "lumina_info@somoszlt.com",
+  "instagram": "https://www.instagram.com/somos.zlt/",
+  "instagram_usuario": "@somos.zlt",
+  "direccion": "Los Girasoles 3231, Funes, Santa Fe, Argentina",
+  "maps_embed": "https://www.google.com/maps?q=Los+Girasoles+3231,+Funes,+Santa+Fe,+Argentina&z=15&output=embed",
+  "maps_link": "https://www.google.com/maps/search/?api=1&query=Los+Girasoles+3231,+Funes,+Santa+Fe,+Argentina",
+  "zlt": "https://www.somoszlt.com/",
+  "qala": "https://qaladesarrollos.com.ar/",
+  "crestale": "https://crestalepropiedades.com.ar/",
+  "jauke": "https://www.jaukedesarrollos.com.ar/"
+}
