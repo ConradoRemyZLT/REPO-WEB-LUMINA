@@ -23,7 +23,7 @@ const LIMIT = 30 * 1024 * 1024; // límite de subida de GitHub web
 
 const MIME = {
   '.webp': 'image/webp', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.svg': 'image/svg+xml',
-  '.mp4': 'video/mp4', '.pdf': 'application/pdf', '.woff2': 'font/woff2'
+  '.mp4': 'video/mp4', '.webm': 'video/webm', '.pdf': 'application/pdf', '.woff2': 'font/woff2'
 };
 const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
 const exists = (p) => fs.existsSync(path.join(ROOT, p));
@@ -79,7 +79,7 @@ html = html.replace(/\{\{link:(\w+)\}\}/g, (_, k) => {
   if (!(k in links)) throw new Error('Link inexistente: ' + k);
   return esc(links[k]);
 });
-html = html.replace(/asset:([\w\-./]+\.(?:webp|jpe?g|png|svg|mp4|pdf|woff2))/g, (_, p) => asset(p));
+html = html.replace(/asset:([\w\-./]+\.(?:webp|jpe?g|png|svg|mp4|webm|pdf|woff2))/g, (_, p) => asset(p));
 html = html.replace('<!--robots-->', INDEX ? '<meta name="robots" content="index,follow">' : '<meta name="robots" content="noindex,nofollow">');
 
 const left = html.match(/asset:|\{\{link:|<!--svg:|\/\*data:/);

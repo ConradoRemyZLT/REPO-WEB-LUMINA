@@ -33,7 +33,7 @@
   $$('.lang button').forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.lang, true); }); });
 
   /* ---------- Barra ---------- */
-  var bar = $('#bar'), wa = $('#wa'), burger = $('#burger');
+  var bar = $('#bar'), wa = $('#fab'), burger = $('#burger');
   function onScroll() {
     var y = window.scrollY;
     bar.classList.toggle('solid', y > window.innerHeight * 0.72);
@@ -244,9 +244,12 @@
 
   /* ---------- Video del predio (autoplay solo en vista) y mapa diferido ---------- */
   $$('video[data-autoplay]').forEach(function (v) {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (!('IntersectionObserver' in window)) { v.preload = 'auto'; v.play().catch(function () {}); return; }
-    new IntersectionObserver(function (es) { if (es[0].isIntersecting) v.play().catch(function () {}); else v.pause(); }, { threshold: 0.25 }).observe(v);
+    // Loop silencioso: arranca solo y se pausa cuando sale de pantalla (ahorra batería)
+    v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true;
+    var play = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+    if (v.readyState >= 2) play(); else v.addEventListener('loadeddata', play, { once: true });
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { if (es[0].isIntersecting) play(); else v.pause(); }, { threshold: 0.1 }).observe(v);
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) play(); });
   });
   var map = $('#map');
   if (map) {

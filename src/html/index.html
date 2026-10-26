@@ -258,7 +258,10 @@
     </div>
     <div class="split-media rv d1">
       <div class="ubic-video">
-        <video src="asset:videos/lumina-predio-loop.mp4" muted loop playsinline preload="none" poster="asset:fotos/renders/predio-poster.webp" data-autoplay aria-label="Animación aérea del predio de Lumina en Funes"></video>
+        <video autoplay muted loop playsinline preload="auto" disablepictureinpicture poster="asset:fotos/renders/predio-poster.webp" data-autoplay aria-label="Animación aérea del predio de Lumina en Funes">
+          <source src="asset:videos/lumina-predio-loop.webm" type="video/webm">
+          <source src="asset:videos/lumina-predio-loop.mp4" type="video/mp4">
+        </video>
         <span class="cap"><span class="l-es">El predio en su entorno · animación</span><span class="l-en">The site and its surroundings · animation</span></span>
       </div>
     </div>
@@ -396,7 +399,10 @@
   </div>
 </footer>
 
-<a class="wa" id="wa" href="{{link:whatsapp}}" target="_blank" rel="noopener" aria-label="WhatsApp"><!--svg:iconos/whatsapp.svg--></a>
+<div class="fab" id="fab">
+  <a class="wa" href="{{link:whatsapp}}" target="_blank" rel="noopener" aria-label="WhatsApp"><!--svg:iconos/whatsapp.svg--></a>
+  <a class="totop" href="#inicio" aria-label="Volver arriba"><!--svg:iconos/arriba.svg--></a>
+</div>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Imagen ampliada"><button class="lb-x" type="button" aria-label="Cerrar"><!--svg:iconos/cerrar.svg--></button><img alt=""></div>
 

@@ -382,10 +382,15 @@ html[lang="es"] .l-en,html[lang="en"] .l-es{display:none!important}
 .foot-legal p{max-width:90ch}
 @media(max-width:860px){.foot-top{grid-template-columns:1fr 1fr}.foot-top>div:first-child{grid-column:1/-1}}
 
-/* WhatsApp flotante */
-.wa{position:fixed;right:clamp(16px,2.4vw,28px);bottom:clamp(16px,2.4vw,28px);z-index:40;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(0,0,0,.18);transform:translateY(120px);transition:transform .6s var(--ease)}
-.wa.on{transform:none}
+/* Botones flotantes: WhatsApp + volver arriba */
+.fab{position:fixed;right:clamp(16px,2.4vw,28px);bottom:clamp(16px,2.4vw,28px);z-index:40;display:flex;flex-direction:column;align-items:center;gap:12px;transform:translateY(160px);opacity:0;transition:transform .6s var(--ease),opacity .6s var(--ease);pointer-events:none}
+.fab.on{transform:none;opacity:1;pointer-events:auto}
+.wa{width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(0,0,0,.18);transition:transform .35s var(--ease)}
+.wa:hover{transform:scale(1.06)}
 .wa svg{width:28px;height:28px}
+.totop{width:44px;height:44px;border-radius:50%;background:rgba(246,244,241,.9);color:var(--ink);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 8px 20px rgba(0,0,0,.08);transition:background .3s,color .3s,transform .35s var(--ease)}
+.totop:hover{background:var(--ink);color:#fff;transform:translateY(-3px)}
+.totop svg{width:18px;height:18px}
 
 /* Lightbox */
 .lb{position:fixed;inset:0;z-index:100;background:rgba(24,22,20,.94);display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,64px);opacity:0;pointer-events:none;transition:opacity .4s var(--ease)}
