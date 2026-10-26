@@ -1,0 +1,56 @@
+# Publica la web de Lumina en GitHub Pages cada vez que se sube algo a main.
+#
+# Publica dist/index.html (generado con `node build.js`, todo embebido) como /index.html.
+# Login: el mismo gate.js de ZLT-WEB-PRESENTACIONES y ZLT-WEB-V2 (mismos usuarios), insertado
+# justo después de </title>. Sigue en noindex hasta la mudanza del dominio.
+# Para sacar el login: borrar el bloque "Login".
+
+name: Publicar en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Armar el sitio
+        run: |
+          set -euo pipefail
+          test -s dist/index.html || { echo "Falta dist/index.html: correr node build.js y volver a subir"; exit 1; }
+          mkdir -p _site
+          cp dist/index.html _site/index.html
+          # Login (gate.js, copia exacta del de ZLT-WEB-V2)
+          BASE="/${GITHUB_REPOSITORY#*/}"
+          cp gate.js _site/gate.js
+          f=_site/index.html
+          grep -q "src=\"$BASE/gate\.js\"" "$f" || sed -i "0,/<\/title>/s##</title><script src=\"$BASE/gate.js\"></script>#" "$f"
+          [ "$(grep -o "$BASE/gate\.js" "$f" | wc -l)" = 1 ] || { echo "El login no quedo una sola vez en $f"; exit 1; }
+          touch _site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

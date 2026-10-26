@@ -5,9 +5,11 @@ Estructura base tomada de ZLT-WEB-V2 (barra de 64 px, wrap de 1200 px, breakpoin
 
 ## Qué se publica
 
-`dist/index.html` → **un solo HTML autocontenido** (fotos, videos, brochures, logos, tipografía, CSS y JS embebidos en base64). Se sube tal cual a GitHub Pages. Pesa ~18,5 MB (límite de subida: 30 MB).
+`dist/index.html` → **un solo HTML autocontenido** (fotos, videos, brochures, logos, tipografía, CSS y JS embebidos en base64). Se sube tal cual a GitHub Pages. Pesa ~24 MB (límite de subida: 30 MB).
 
 Por defecto el sitio sale con `noindex` (no compite en Google con luminafunes.com hasta que se haga la mudanza). Para habilitar la indexación: `node build.js --index`.
+
+Publicado en https://conradoremyzlt.github.io/REPO-WEB-LUMINA/ — `.github/workflows/pages.yml` publica `dist/index.html` en cada push a `main` (correr `node build.js` antes de subir). Por ahora lleva login: inserta `gate.js` (copia exacta del de ZLT-WEB-V2, mismos usuarios) después de `</title>`. Si cambian los usuarios allá, copiar el archivo de nuevo. Es un login del lado del navegador: frena a quien entra por la URL, no a quien lea el repo. Para sacarlo: borrar el bloque "Login" del workflow.
 
 ## Cómo se trabaja
 
