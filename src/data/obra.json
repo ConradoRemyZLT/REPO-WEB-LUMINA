@@ -1,5 +1,5 @@
 {
-  "_nota": "Estado de obra. Actualizar con cada informe de Jauke (Franco Scaglione). Los % por etapa los envía Jauke: no calcularlos.",
+  "_nota": "Estado de obra. Actualizar con cada informe de Jauke (Franco Scaglione). Los % por etapa los envía Jauke: no calcularlos. 'galeria' va de lo más nuevo a lo más viejo; cada foto lleva su fecha.",
   "porcentajes": {
     "fecha": "2026-06",
     "fuente_es": "Informe técnico de avance · Jauke Desarrollos",
@@ -8,43 +8,147 @@
   "etapas": [
     {
       "n": 1,
-      "viviendas": [1, 2, 3, 4, 5, 6],
+      "viviendas": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
       "avance": 79,
-      "trabajos_es": ["Pintura interior y exterior", "Revestimientos exteriores", "Pérgolas y portones", "Mesadas y artefactos sanitarios"],
-      "trabajos_en": ["Interior and exterior painting", "Exterior cladding", "Pergolas and gates", "Countertops and bathroom fixtures"]
+      "trabajos_es": [
+        "Mesadas y artefactos de cocina",
+        "Luminarias exteriores",
+        "Vanitorys",
+        "Muebles de lavadero (casas 3 a 6)"
+      ],
+      "trabajos_en": [
+        "Countertops and kitchen appliances",
+        "Outdoor lighting",
+        "Vanity units",
+        "Laundry cabinets (homes 3 to 6)"
+      ]
     },
     {
       "n": 2,
-      "viviendas": [7, 8, 9],
+      "viviendas": [
+        7,
+        8,
+        9
+      ],
       "avance": 63,
-      "trabajos_es": ["Aberturas exteriores", "Pintura interior", "Piletas", "Bajomesadas y placares"],
-      "trabajos_en": ["Exterior windows and doors", "Interior painting", "Swimming pools", "Kitchen units and closets"]
+      "trabajos_es": [
+        "Pérgolas y portones",
+        "Puertas de ingreso",
+        "Terminaciones exteriores",
+        "Pileta de la casa 9"
+      ],
+      "trabajos_en": [
+        "Pergolas and gates",
+        "Front doors",
+        "Exterior finishes",
+        "Pool at home 9"
+      ]
     },
     {
       "n": 3,
-      "viviendas": [10, 11, 12, 13, 14],
+      "viviendas": [
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
       "avance": 28,
-      "trabajos_es": ["Revoques exteriores y ladrillo visto", "Terraza e impermeabilización", "Albañilería exterior", "Instalaciones"],
-      "trabajos_en": ["Exterior plaster and face brick", "Roof terrace and waterproofing", "Exterior masonry", "Building services"]
+      "trabajos_es": [
+        "Yesería y revestimientos",
+        "Pérgolas, portones y puertas de ingreso",
+        "Terminaciones exteriores",
+        "Piletas"
+      ],
+      "trabajos_en": [
+        "Plastering and wall tiling",
+        "Pergolas, gates and front doors",
+        "Exterior finishes",
+        "Swimming pools"
+      ]
     }
   ],
-  "trabajos_fecha": "2026-08",
-  "relevamiento": {
-    "fecha": "2026-05",
-    "video": "videos/avance-obra-2026-05.mp4",
-    "fotos": [
-      "fotos/obra/2026-05/obra-2026-05-31.webp",
-      "fotos/obra/2026-05/obra-2026-05-33.webp",
-      "fotos/obra/2026-05/obra-2026-05-34.webp",
-      "fotos/obra/2026-05/obra-2026-05-01.webp",
-      "fotos/obra/2026-05/obra-2026-05-07.webp",
-      "fotos/obra/2026-05/obra-2026-05-26.webp",
-      "fotos/obra/2026-05/obra-2026-05-24.webp",
-      "fotos/obra/2026-05/obra-2026-05-20.webp",
-      "fotos/obra/2026-05/obra-2026-05-08.webp",
-      "fotos/obra/2026-05/obra-2026-05-09.webp",
-      "fotos/obra/2026-05/obra-2026-05-35.webp",
-      "fotos/obra/2026-05/obra-2026-05-28.webp"
-    ]
+  "tareas": {
+    "mes": "2026-10",
+    "informe": "2026-09"
+  },
+  "galeria": [
+    {
+      "src": "fotos/obra/2026-09/obra-2026-09-vista-general.webp",
+      "fecha": "2026-09",
+      "es": "Vista general de las viviendas",
+      "en": "General view of the homes"
+    },
+    {
+      "src": "fotos/obra/2026-09/obra-2026-09-calle-interna.webp",
+      "fecha": "2026-09",
+      "es": "Calle interna con adoquinado",
+      "en": "Internal street with paving"
+    },
+    {
+      "src": "fotos/obra/2026-09/obra-2026-09-fachada.webp",
+      "fecha": "2026-09",
+      "es": "Fachada con ladrillo visto y revoque exterior",
+      "en": "Façade with face brick and render"
+    },
+    {
+      "src": "fotos/obra/2026-09/obra-2026-09-cocina.webp",
+      "fecha": "2026-09",
+      "es": "Planta baja, sector de cocina",
+      "en": "Ground floor, kitchen area"
+    },
+    {
+      "src": "fotos/obra/2026-09/obra-2026-09-placar.webp",
+      "fecha": "2026-09",
+      "es": "Placar interior con cajoneras",
+      "en": "Built-in closet with drawers"
+    },
+    {
+      "src": "fotos/obra/2026-09/obra-2026-09-mueble-placar.webp",
+      "fecha": "2026-09",
+      "es": "Mueble de placar colocado",
+      "en": "Closet unit installed"
+    },
+    {
+      "src": "fotos/obra/2026-09/obra-2026-09-pileta-escalones.webp",
+      "fecha": "2026-09",
+      "es": "Pileta con escalones de ladrillo en ejecución",
+      "en": "Pool with brick steps under construction"
+    },
+    {
+      "src": "fotos/obra/2026-09/obra-2026-09-pileta-excavacion.webp",
+      "fecha": "2026-09",
+      "es": "Excavación de pileta en ejecución",
+      "en": "Pool excavation in progress"
+    },
+    {
+      "src": "fotos/obra/2026-05/obra-2026-05-31.webp",
+      "fecha": "2026-05",
+      "es": "Vista aérea del conjunto",
+      "en": "Aerial view of the complex"
+    },
+    {
+      "src": "fotos/obra/2026-05/obra-2026-05-33.webp",
+      "fecha": "2026-05",
+      "es": "Vista aérea de las etapas 2 y 3",
+      "en": "Aerial view of stages 2 and 3"
+    },
+    {
+      "src": "fotos/obra/2026-05/obra-2026-05-34.webp",
+      "fecha": "2026-05",
+      "es": "Vista aérea de la obra",
+      "en": "Aerial view of the works"
+    }
+  ],
+  "video": {
+    "src": "videos/avance-obra-2026-05.mp4",
+    "fecha": "2026-05"
   }
 }

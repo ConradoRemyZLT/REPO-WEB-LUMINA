@@ -199,7 +199,7 @@
       '<div class="etapa-head"><div><span class="k">' + L('Etapa ' + e.n, 'Stage ' + e.n) + '</span><h3>' + L('Casas ' + rango, 'Homes ' + rango) + '</h3></div>' +
         '<div class="pct" data-to="' + e.avance + '"><span>' + e.avance + '</span><small>%</small></div></div>' +
       '<div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + e.avance + '" aria-label="Etapa ' + e.n + '"><i data-w="' + e.avance + '"></i></div>' +
-      '<div><div class="k2">' + L('Trabajos en curso', 'Works in progress') + ' · ' + mesL(O.trabajos_fecha) + '</div><ul>' +
+      '<div><div class="k2">' + L('Tareas programadas · ' + mes(O.tareas.mes, 'es'), 'Scheduled for ' + mes(O.tareas.mes, 'en')) + '</div><ul>' +
         e.trabajos_es.map(function (t, j) { return '<li>' + L(t, e.trabajos_en[j]) + '</li>'; }).join('') + '</ul></div>' +
       '<div class="lots">' + v.map(function (n) { return '<a class="chip num" href="#masterplan" data-lot="' + n + '">' + n + '</a>'; }).join('') + '</div>';
     et.appendChild(el);
@@ -209,26 +209,29 @@
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { s.textContent = to; return; }
     (function step(ts) { if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / dur); s.textContent = Math.round(to * (1 - Math.pow(1 - p, 4))); if (p < 1) requestAnimationFrame(step); })(performance.now());
   }
-  var R = O.relevamiento || {};
+  var G = O.galeria || [], V = O.video || {};
   var gtr = $('#gal-obra .gtrack');
-  (R.fotos || []).forEach(function (src, k) {
-    var f = document.createElement('figure'); f.className = 'gslide';
-    f.innerHTML = '<img src="' + src + '" alt="Avance de obra Lumina · ' + mes(R.fecha, 'es') + ' · foto ' + (k + 1) + '" loading="lazy">';
-    gtr.appendChild(f);
+  G.forEach(function (f) {
+    var el = document.createElement('figure'); el.className = 'gslide';
+    el.innerHTML = '<img src="' + f.src + '" alt="' + f.es + ' · ' + mes(f.fecha, 'es') + '" data-alt-en="' + f.en + ' · ' + mes(f.fecha, 'en') + '" loading="lazy">' +
+      '<figcaption>' + L(f.es + ' · ' + mes(f.fecha, 'es'), f.en + ' · ' + mes(f.fecha, 'en')) + '</figcaption>';
+    gtr.appendChild(el);
   });
-  if (R.fecha) {
-    $('#obra-relev').innerHTML = L('Relevamiento fotográfico: ' + mes(R.fecha, 'es'), 'Photo survey: ' + mes(R.fecha, 'en'));
-    $('#vcard-date').innerHTML = L('Relevamiento de ' + mes(R.fecha, 'es'), mes(R.fecha, 'en') + ' survey');
+  if (G.length) {
+    var ult = G[0].fecha;
+    $('#obra-relev').innerHTML = L('Fotos actualizadas a ' + mes(ult, 'es') + ' · fuente: Jauke Desarrollos', 'Photos updated ' + mes(ult, 'en') + ' · source: Jauke Desarrollos');
   }
+  if (V.fecha) $('#vcard-date').innerHTML = L('Relevamiento de ' + mes(V.fecha, 'es'), mes(V.fecha, 'en') + ' survey');
   var vcard = $('#vcard');
   function playVideo() {
-    if (vcard.classList.contains('playing') || !R.video) return;
-    var v = document.createElement('video'); v.src = R.video; v.controls = true; v.playsInline = true; v.autoplay = true;
+    if (vcard.classList.contains('playing') || !V.src) return;
+    var v = document.createElement('video'); v.src = V.src; v.controls = true; v.playsInline = true; v.autoplay = true;
     vcard.appendChild(v); vcard.classList.add('playing'); v.play().catch(function () {});
   }
   vcard.addEventListener('click', playVideo); vcard.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playVideo(); } });
 
   $$('[data-gal]').forEach(gallery);
+  setLang(html.lang); // aplica alt en inglés a las imágenes generadas
 
   /* ---------- Reveal + medidores ---------- */
   var rvs = $$('.rv');
