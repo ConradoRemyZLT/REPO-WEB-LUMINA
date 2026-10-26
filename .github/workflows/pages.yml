@@ -1,9 +1,9 @@
 # Publica la web de Lumina en GitHub Pages cada vez que se sube algo a main.
 #
 # Publica dist/index.html (generado con `node build.js`, todo embebido) como /index.html.
-# Login: el mismo gate.js de ZLT-WEB-PRESENTACIONES y ZLT-WEB-V2 (mismos usuarios), insertado
-# justo después de </title>. Sigue en noindex hasta la mudanza del dominio.
-# Para sacar el login: borrar el bloque "Login".
+# Login: el build ya embebe gate.js (mismos usuarios que ZLT-WEB-PRESENTACIONES y ZLT-WEB-V2)
+# justo después de </title>; acá solo se verifica que esté. Sigue en noindex hasta la mudanza.
+# Para sacar el login: `node build.js --sin-login` y borrar el bloque "Login".
 
 name: Publicar en GitHub Pages
 
@@ -33,12 +33,9 @@ jobs:
           test -s dist/index.html || { echo "Falta dist/index.html: correr node build.js y volver a subir"; exit 1; }
           mkdir -p _site
           cp dist/index.html _site/index.html
-          # Login (gate.js, copia exacta del de ZLT-WEB-V2)
-          BASE="/${GITHUB_REPOSITORY#*/}"
-          cp gate.js _site/gate.js
+          # Login: el gate tiene que estar embebido una sola vez
           f=_site/index.html
-          grep -q "src=\"$BASE/gate\.js\"" "$f" || sed -i "0,/<\/title>/s##</title><script src=\"$BASE/gate.js\"></script>#" "$f"
-          [ "$(grep -o "$BASE/gate\.js" "$f" | wc -l)" = 1 ] || { echo "El login no quedo una sola vez en $f"; exit 1; }
+          [ "$(grep -o 'zlt-gate-v1-2026' "$f" | wc -l)" = 1 ] || { echo "El login no quedó una sola vez en $f: correr node build.js"; exit 1; }
           touch _site/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3

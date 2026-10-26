@@ -9,7 +9,7 @@ Estructura base tomada de ZLT-WEB-V2 (barra de 64 px, wrap de 1200 px, breakpoin
 
 Por defecto el sitio sale con `noindex` (no compite en Google con luminafunes.com hasta que se haga la mudanza). Para habilitar la indexación: `node build.js --index`.
 
-Publicado en https://conradoremyzlt.github.io/REPO-WEB-LUMINA/ — `.github/workflows/pages.yml` publica `dist/index.html` en cada push a `main` (correr `node build.js` antes de subir). Por ahora lleva login: inserta `gate.js` (copia exacta del de ZLT-WEB-V2, mismos usuarios) después de `</title>`. Si cambian los usuarios allá, copiar el archivo de nuevo. Es un login del lado del navegador: frena a quien entra por la URL, no a quien lea el repo. Para sacarlo: borrar el bloque "Login" del workflow.
+Publicado en https://conradoremyzlt.github.io/REPO-WEB-LUMINA/ — `.github/workflows/pages.yml` publica `dist/index.html` en cada push a `main` (correr `node build.js` antes de subir). Lleva login con las mismas credenciales que ZLT-WEB-PRESENTACIONES y ZLT-WEB-V2: `node build.js` embebe `gate.js` (copia exacta del de ZLT-WEB-V2) después de `</title>`, así el HTML pide usuario también fuera de GitHub Pages. Si cambian los usuarios allá, copiar el archivo de nuevo y volver a buildear. Es un login del lado del navegador: frena a quien entra por la URL, no a quien lea el repo. Para sacarlo: `node build.js --sin-login` y borrar el bloque "Login" del workflow.
 
 ## Cómo se trabaja
 
@@ -19,6 +19,7 @@ Requisito: Node 16 o superior (sin dependencias).
 node build.js          # genera dist/index.html (lo que se publica)
 node build.js --dev    # genera preview.html, apunta a los archivos del repo (para editar y ver rápido)
 node build.js --index  # igual que el primero, pero indexable
+node build.js --sin-login  # sin pantalla de login
 ```
 
 Se edita siempre en `src/`, `links/` y las carpetas de recursos; nunca a mano `dist/index.html`.

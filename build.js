@@ -5,6 +5,7 @@
     node build.js            -> dist/index.html  (UN solo HTML autocontenido, todo en base64; es lo que se publica)
     node build.js --dev      -> preview.html     (misma página, pero apunta a los archivos del repo; para editar rápido)
     node build.js --index    -> permite indexación en Google (por defecto: noindex)
+    node build.js --sin-login -> sin pantalla de login (por defecto el HTML lleva gate.js, los mismos usuarios que ZLT-WEB-V2)
 
   Marcadores que entiende la plantilla (src/html/index.html):
     <!--css-->  <!--js-->            estilos y script
@@ -19,6 +20,7 @@ const path = require('path');
 const ROOT = __dirname;
 const DEV = process.argv.includes('--dev');
 const INDEX = process.argv.includes('--index');
+const LOGIN = !process.argv.includes('--sin-login');
 const LIMIT = 30 * 1024 * 1024; // límite de subida de GitHub web
 
 const MIME = {
@@ -82,6 +84,13 @@ html = html.replace(/\{\{link:(\w+)\}\}/g, (_, k) => {
 html = html.replace(/asset:([\w\-./]+\.(?:webp|jpe?g|png|svg|mp4|webm|pdf|woff2))/g, (_, p) => asset(p));
 html = html.replace('<!--robots-->', INDEX ? '<meta name="robots" content="index,follow">' : '<meta name="robots" content="noindex,nofollow">');
 
+// Login: gate.js (copia exacta del de ZLT-WEB-V2) inline después de </title>, antes de que se pinte nada
+if (LOGIN) {
+  if (!exists('gate.js')) throw new Error('Falta gate.js (login). Copiarlo de ZLT-WEB-V2 o usar --sin-login');
+  const gate = read('gate.js');
+  html = html.replace('</title>', () => '</title>\n<script>' + gate + '</script>');
+}
+
 const left = html.match(/asset:|\{\{link:|<!--svg:|\/\*data:/);
 if (left) throw new Error('Quedó un marcador sin resolver cerca de: ' + html.substr(left.index, 80));
 
@@ -91,7 +100,7 @@ fs.writeFileSync(out, html);
 
 const size = Buffer.byteLength(html);
 const mb = (b) => (b / 1048576).toFixed(2) + ' MB';
-console.log((DEV ? 'preview.html' : 'dist/index.html') + ' · ' + mb(size) + (INDEX ? ' · indexable' : ' · noindex'));
+console.log((DEV ? 'preview.html' : 'dist/index.html') + ' · ' + mb(size) + (INDEX ? ' · indexable' : ' · noindex') + (LOGIN ? ' · con login' : ' · sin login'));
 if (!DEV) {
   [...used.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8).forEach(([p, b]) => console.log('  ' + mb(b).padStart(9) + '  ' + p));
   [...hits.entries()].filter(([p, n]) => n > 1 && used.get(p) > 50 * 1024).forEach(([p, n]) => console.warn('  aviso: ' + p + ' se embebe ' + n + ' veces (duplica peso)'));
