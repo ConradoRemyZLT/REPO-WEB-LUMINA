@@ -1,9 +1,9 @@
 {
   "_nota": "Estado de obra. Actualizar con cada informe de Jauke (Franco Scaglione). Los % por etapa los envía Jauke: no calcularlos. 'galeria' va de lo más nuevo a lo más viejo; cada foto lleva su fecha.",
   "porcentajes": {
-    "fecha": "2026-06",
-    "fuente_es": "Informe técnico de avance · Jauke Desarrollos",
-    "fuente_en": "Technical progress report · Jauke Desarrollos"
+    "fecha": "2026-09",
+    "fuente_es": "Informe trimestral de avance",
+    "fuente_en": "Quarterly progress report"
   },
   "etapas": [
     {
@@ -16,7 +16,7 @@
         5,
         6
       ],
-      "avance": 79,
+      "avance": 95,
       "trabajos_es": [
         "Mesadas y artefactos de cocina",
         "Luminarias exteriores",
@@ -37,7 +37,7 @@
         8,
         9
       ],
-      "avance": 63,
+      "avance": 81,
       "trabajos_es": [
         "Pérgolas y portones",
         "Puertas de ingreso",
@@ -60,7 +60,7 @@
         13,
         14
       ],
-      "avance": 28,
+      "avance": 52,
       "trabajos_es": [
         "Yesería y revestimientos",
         "Pérgolas, portones y puertas de ingreso",
