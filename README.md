@@ -62,7 +62,7 @@ Reglas: `exif_transpose` antes de escalar, LANCZOS, nunca deformar; PNG con alfa
 
 ## Fuentes de los datos
 
-- Textos, características, terminaciones y tipologías: brochure digital vigente (27/06/25) y su versión en inglés.
+- Textos, características, terminaciones y tipologías: brochure digital vigente (27/06/25) y su versión en inglés. El PDF en español es la versión en alta del brochure (Brochure_Digital_Lumina.pdf, Canva) comprimida a ~2,2 MB.
 - Superficie de cada lote: plano de numeración de casas de Jauke (SUP03).
 - % de avance por etapa: informe trimestral julio–septiembre 2026 (95 / 81 / 52). Próximas tareas y fotos de obra: informe de Jauke de septiembre 2026 (19/10/2026).
 - Vistas aéreas y video de obra: relevamiento de mayo 2026.
