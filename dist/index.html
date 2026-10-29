@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" class="is-loading">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -240,6 +240,24 @@ html[lang="es"] .l-en,html[lang="en"] .l-es{display:none!important}
 .tag-live::before{animation:pulse 2.2s infinite}
 .tag-glass{color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.32);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 @keyframes pulse{0%{box-shadow:0 0 0 0 currentColor}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+
+/* ---------- Pantalla de carga (isologotipo Lumina) ---------- */
+.loader{position:fixed;inset:0;z-index:1000;background:var(--olive);color:#fff;display:flex;align-items:center;justify-content:center;
+  transition:opacity .9s var(--ease),visibility 0s linear .9s;animation:loaderFailsafe 0s linear 12s forwards}
+.loader.out{opacity:0;visibility:hidden}
+.loader-inner{display:flex;flex-direction:column;align-items:center;gap:clamp(28px,4vh,40px);width:min(360px,62vw)}
+.loader-logo{width:100%;animation:loaderLogo 1.4s var(--ease) .15s both}
+.loader-logo svg{width:100%;height:auto}
+.loader-bar{width:56%;height:1px;background:rgba(255,255,255,.28);overflow:hidden}
+.loader-bar i{display:block;height:100%;width:100%;background:#fff;transform:scaleX(0);transform-origin:left;animation:loaderBar 2.6s cubic-bezier(.3,.6,.2,1) .4s forwards}
+.loader.done .loader-bar i{animation:none;transform:scaleX(1);transition:transform .45s var(--ease)}
+.loader.out .loader-inner{transform:translateY(-10px);transition:transform .9s var(--ease)}
+@keyframes loaderLogo{from{opacity:0;clip-path:inset(0 100% 0 0);transform:translateY(8px)}to{opacity:1;clip-path:inset(0 0 0 0);transform:none}}
+@keyframes loaderBar{0%{transform:scaleX(0)}100%{transform:scaleX(.88)}}
+@keyframes loaderFailsafe{to{opacity:0;visibility:hidden}}
+html.lock,html.lock body{overflow:hidden}
+html.is-loading .hero-media img{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.loader-logo,.loader-bar i{animation:none}.loader-bar i{transform:scaleX(.88)}}
 
 /* ---------- Barra superior ---------- */
 .bar{position:fixed;inset:0 0 auto 0;height:var(--bar);z-index:50;color:#fff;transition:background .45s var(--ease),color .45s var(--ease),box-shadow .45s var(--ease)}
@@ -581,6 +599,16 @@ html[lang="es"] .l-en,html[lang="en"] .l-es{display:none!important}
 </style>
 </head>
 <body>
+
+<!-- ================= PANTALLA DE CARGA ================= -->
+<div class="loader" id="loader" role="status" aria-live="polite">
+  <div class="loader-inner">
+    <div class="loader-logo"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4936.000000 1679.000000" preserveAspectRatio="xMidYMid meet"> <g transform="translate(0.000000,1679.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none"> <path d="M80 16625 c0 -81 1 -85 23 -85 12 0 77 -5 145 -10 432 -34 617 -190 699 -590 16 -80 18 -368 23 -4575 l5 -4490 2773 -3 2772 -2 0 110 0 110 -2345 0 -2345 0 -2 4698 c-3 4602 -3 4698 -22 4747 -11 28 -39 69 -66 95 -83 84 -41 80 -902 80 l-758 0 0 -85z M8030 16625 c0 -74 2 -85 18 -85 9 0 72 -5 140 -10 466 -36 661 -222 722 -690 10 -74 12 -573 9 -2270 -7 -3639 -9 -3447 47 -3830 243 -1678 1357 -2734 3094 -2935 320 -37 748 -37 1036 0 1528 198 2585 1345 2739 2969 13 138 15 607 15 3548 l0 3388 -105 0 -104 0 -4 -3402 c-3 -3747 1 -3478 -63 -3826 -236 -1278 -1076 -2190 -2234 -2422 -377 -76 -877 -82 -1260 -15 -1256 219 -2081 1209 -2270 2724 -45 358 -44 277 -49 3581 -6 2893 -7 3168 -22 3201 -26 56 -79 110 -134 135 l-50 24 -762 0 -763 0 0 -85z M17780 16625 c0 -81 1 -85 23 -85 12 0 78 -5 147 -10 431 -34 621 -197 697 -601 17 -89 18 -343 23 -4574 l5 -4480 107 -3 108 -3 2 4402 3 4401 1891 -3344 1890 -3343 123 0 123 0 1751 3102 1752 3103 5 -4158 5 -4157 423 -3 422 -2 0 4920 0 4921 -121 -3 -122 -3 -1940 -3437 c-1068 -1891 -1944 -3438 -1947 -3438 -3 0 -839 1481 -1859 3290 -1020 1810 -1869 3311 -1886 3337 -46 69 -152 164 -217 195 -116 57 -129 58 -795 58 l-613 0 0 -85z M29210 16625 c0 -81 1 -85 23 -85 87 -1 283 -23 355 -40 233 -55 379 -187 447 -403 64 -202 59 215 65 -4732 l5 -4490 425 0 425 0 3 4760 c2 3262 -1 4782 -8 4828 -17 113 -68 184 -160 226 -44 20 -62 21 -812 21 l-768 0 0 -85z M32880 16625 c0 -81 1 -85 23 -85 87 -1 283 -23 355 -40 256 -61 410 -217 470 -476 48 -205 46 9 49 -4701 l3 -4453 105 0 105 0 2 4441 3 4440 3026 -4438 3025 -4438 107 -3 107 -3 0 4799 c0 4222 -2 4804 -15 4849 -20 68 -65 126 -122 160 l-48 28 -462 3 -463 3 0 -86 c0 -81 1 -85 23 -85 12 0 77 -5 145 -10 426 -33 608 -183 695 -570 l21 -95 3 -3735 c3 -3155 1 -3732 -10 -3720 -8 8 -1239 1815 -2737 4015 -1498 2200 -2743 4025 -2767 4055 -92 114 -203 183 -340 214 -62 14 -159 16 -687 16 l-616 0 0 -85z M44280 16626 l0 -84 98 -6 c487 -31 750 -188 828 -496 22 -87 15 -284 -14 -392 -12 -43 -690 -2025 -1508 -4405 -818 -2380 -1490 -4338 -1492 -4350 -4 -23 -3 -23 112 -23 113 0 117 1 127 24 6 13 268 774 583 1692 l572 1669 1813 0 1813 0 579 -1670 c318 -918 583 -1680 589 -1692 l10 -23 440 0 c359 0 440 2 440 13 0 31 -3283 9478 -3317 9546 -47 94 -130 178 -214 220 -121 59 -141 61 -831 61 l-628 0 0 -84z m1998 -3661 l858 -2480 -1735 -3 c-954 -1 -1735 -1 -1737 1 -2 2 1704 4983 1722 5027 4 10 11 2 20 -25 8 -22 401 -1156 872 -2520z M14665 3290 c-477 -76 -776 -499 -752 -1065 18 -408 197 -716 502 -865 142 -69 211 -84 380 -85 209 0 363 47 512 158 152 113 273 328 298 530 l7 58 -123 -3 -123 -3 -12 -65 c-53 -288 -248 -449 -544 -452 -290 -2 -492 143 -592 424 -103 291 -68 667 84 894 115 172 275 254 498 254 276 0 457 -130 544 -388 l23 -67 123 -3 122 -3 -7 47 c-33 221 -200 447 -405 548 -52 25 -131 55 -174 66 -93 23 -274 33 -361 20z M18075 3290 c-302 -41 -488 -208 -511 -460 -24 -256 126 -445 431 -543 44 -15 154 -45 245 -67 433 -107 514 -169 514 -395 0 -218 -147 -326 -444 -326 -323 0 -510 130 -567 392 l-17 80 -120 -3 -121 -3 3 -50 c13 -204 157 -426 345 -530 247 -137 634 -152 874 -34 195 95 295 258 295 479 0 177 -40 285 -141 385 -99 99 -227 150 -641 255 -270 69 -360 124 -394 241 -67 223 83 359 395 359 267 0 420 -109 462 -329 l12 -61 122 0 123 0 0 32 c0 17 -7 61 -16 97 -56 231 -227 399 -470 461 -93 24 -276 33 -379 20z M21500 3294 c-346 -43 -540 -227 -540 -515 0 -137 48 -248 144 -337 106 -96 213 -141 528 -221 360 -91 453 -139 497 -257 26 -67 28 -189 5 -256 -46 -138 -194 -210 -429 -209 -316 0 -503 126 -562 379 -8 37 -17 73 -19 80 -2 9 -36 12 -124 12 l-120 0 0 -31 c0 -103 73 -291 153 -390 90 -112 252 -208 423 -251 125 -31 391 -31 505 0 282 77 439 268 439 532 -1 275 -119 433 -395 530 -49 17 -193 58 -320 91 -393 101 -475 162 -475 353 1 176 139 266 408 266 267 0 419 -110 463 -332 l12 -58 123 0 c143 0 135 -9 108 113 -54 243 -227 417 -475 477 -82 20 -276 33 -349 24z M34525 3289 c-273 -34 -464 -187 -504 -403 -53 -285 95 -493 424 -599 44 -15 154 -45 245 -67 432 -107 513 -169 513 -395 0 -217 -146 -325 -438 -326 -339 -1 -538 144 -579 424 l-7 48 -122 -3 -122 -3 3 -49 c10 -201 157 -427 345 -531 247 -137 634 -152 874 -34 194 94 294 257 294 475 0 171 -34 274 -119 367 -104 111 -207 157 -572 253 -275 72 -357 102 -413 153 -63 57 -81 102 -82 203 0 80 2 89 30 129 64 91 158 129 332 137 140 5 220 -7 302 -46 104 -49 180 -154 205 -284 l11 -58 122 0 123 0 0 28 c0 48 -38 180 -71 248 -123 249 -430 378 -794 333z M16426 3252 c-3 -5 -160 -436 -350 -958 -189 -522 -348 -957 -351 -966 -7 -17 3 -18 123 -18 l130 0 82 240 83 240 420 -2 420 -3 81 -235 81 -235 128 -3 c70 -1 127 1 127 5 0 4 -157 442 -349 973 l-350 965 -134 3 c-75 1 -138 -1 -141 -6z m141 -1230 c-182 -1 -332 -1 -333 1 -2 2 71 228 163 503 l166 499 167 -500 167 -500 -330 -3z M19823 3248 c-9 -12 -703 -1919 -703 -1932 0 -3 57 -6 128 -6 l127 0 81 238 81 237 420 3 420 2 83 -240 83 -240 130 0 c99 0 128 3 124 13 -2 6 -159 440 -347 962 -189 523 -348 956 -353 963 -7 8 -47 12 -137 12 -90 0 -130 -4 -137 -12z m305 -726 c89 -268 162 -491 162 -495 0 -4 -148 -7 -330 -7 -181 0 -330 3 -330 7 0 15 325 983 330 983 3 0 78 -219 168 -488z M23205 3248 c-3 -7 -4 -445 -3 -973 l3 -960 693 -3 692 -2 0 110 0 110 -570 0 -570 0 0 335 0 335 490 0 490 0 0 115 0 115 -490 0 -490 0 0 300 0 300 553 2 552 3 0 110 0 110 -673 3 c-533 2 -674 0 -677 -10z M24867 3254 c-4 -4 -7 -443 -7 -976 l0 -968 125 0 125 0 2 792 3 791 471 -789 471 -789 152 -3 151 -3 0 976 0 975 -125 0 -125 0 -2 -793 -3 -794 -471 791 -471 791 -144 3 c-80 1 -148 -1 -152 -4z M27247 3253 c-4 -3 -7 -442 -7 -975 l0 -968 125 0 125 0 0 440 0 440 425 0 425 0 0 110 0 110 -425 0 -425 0 0 310 0 310 528 2 527 3 0 110 0 110 -646 3 c-355 1 -649 -1 -652 -5z M28754 3246 c-3 -7 -3 -334 -2 -727 4 -710 4 -714 27 -789 68 -225 218 -367 456 -432 117 -31 394 -31 509 0 193 53 327 156 404 309 78 157 77 147 77 943 l0 705 -122 3 -123 3 0 -663 c0 -365 -5 -695 -10 -734 -33 -252 -183 -366 -484 -365 -224 0 -355 59 -425 190 -60 113 -61 126 -61 884 l0 687 -120 0 c-92 0 -122 -3 -126 -14z M30547 3254 c-4 -4 -7 -443 -7 -976 l0 -968 125 0 125 0 2 792 3 792 472 -789 471 -790 151 -3 151 -3 0 976 0 975 -125 0 -125 0 -2 -793 -3 -793 -471 791 -470 790 -145 3 c-80 1 -148 -1 -152 -4z M32395 3248 c-3 -7 -4 -445 -3 -973 l3 -960 690 0 690 0 3 108 3 107 -571 0 -570 0 0 335 0 335 488 2 487 3 0 110 0 110 -487 3 -488 2 0 300 0 300 553 2 552 3 0 110 0 110 -673 3 c-533 2 -674 0 -677 -10z M14100 180 l0 -100 10675 0 10675 0 0 100 0 100 -10675 0 -10675 0 0 -100z"/> </g> </svg></div>
+    <div class="loader-bar"><i></i></div>
+    <span class="sr-only">Cargando Lumina…</span>
+  </div>
+</div>
+<noscript><style>.loader{display:none!important}</style></noscript>
 
 <!-- ================= BARRA ================= -->
 <header class="bar" id="bar">
@@ -1207,17 +1235,42 @@ html[lang="es"] .l-en,html[lang="en"] .l-es{display:none!important}
   $$('[data-gal]').forEach(gallery);
   setLang(html.lang); // aplica alt en inglés a las imágenes generadas
 
-  /* ---------- Reveal + medidores ---------- */
-  var rvs = $$('.rv');
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (!e.isIntersecting) return; var t = e.target; t.classList.add('in'); io.unobserve(t);
-        if (t.classList.contains('etapa')) { $('.meter i', t).style.width = $('.meter i', t).dataset.w + '%'; countUp($('.pct', t)); }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
-    rvs.forEach(function (r) { io.observe(r); });
-  } else rvs.forEach(function (r) { r.classList.add('in'); });
+  /* ---------- Reveal + medidores (arranca cuando se va la pantalla de carga) ---------- */
+  function startReveal() {
+    var rvs = $$('.rv');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return; var t = e.target; t.classList.add('in'); io.unobserve(t);
+          if (t.classList.contains('etapa')) { $('.meter i', t).style.width = $('.meter i', t).dataset.w + '%'; countUp($('.pct', t)); }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
+      rvs.forEach(function (r) { io.observe(r); });
+    } else rvs.forEach(function (r) { r.classList.add('in'); });
+  }
+
+  /* ---------- Pantalla de carga: espera a que se decodifiquen fotos, video y tipografía ---------- */
+  (function () {
+    var ld = $('#loader'), t0 = Date.now(), MIN = 1800, MAX = 9000, ended = false;
+    if (!ld) { html.classList.remove('is-loading'); startReveal(); return; }
+    html.classList.add('lock');
+    function decodeImgs() {
+      var imgs = $$('img').filter(function (i) { return i.closest('.hero, .facts, #proyecto') || i.loading !== 'lazy'; });
+      return Promise.all(imgs.map(function (i) { return (i.decode ? i.decode() : Promise.resolve()).catch(function () {}); }));
+    }
+    function finish() {
+      if (ended) return; ended = true;
+      ld.classList.add('done');
+      setTimeout(function () {
+        ld.classList.add('out'); html.classList.remove('is-loading', 'lock'); startReveal(); window.dispatchEvent(new Event('scroll'));
+        setTimeout(function () { if (ld.parentNode) ld.parentNode.removeChild(ld); }, 1000);
+      }, 450);
+    }
+    var ready = new Promise(function (res) { if (document.readyState === 'complete') res(); else window.addEventListener('load', res, { once: true }); })
+      .then(function () { return Promise.all([decodeImgs(), document.fonts ? document.fonts.ready : null]); });
+    ready.then(function () { setTimeout(finish, Math.max(0, MIN - (Date.now() - t0))); });
+    setTimeout(finish, MAX); // nunca bloquear el sitio
+  })();
 
   /* ---------- Video del predio (autoplay solo en vista) y mapa diferido ---------- */
   $$('video[data-autoplay]').forEach(function (v) {

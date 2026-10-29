@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" class="is-loading">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -16,6 +16,16 @@
 <style><!--css--></style>
 </head>
 <body>
+
+<!-- ================= PANTALLA DE CARGA ================= -->
+<div class="loader" id="loader" role="status" aria-live="polite">
+  <div class="loader-inner">
+    <div class="loader-logo"><!--svg:logos/lumina.svg--></div>
+    <div class="loader-bar"><i></i></div>
+    <span class="sr-only">Cargando Lumina…</span>
+  </div>
+</div>
+<noscript><style>.loader{display:none!important}</style></noscript>
 
 <!-- ================= BARRA ================= -->
 <header class="bar" id="bar">

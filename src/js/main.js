@@ -233,17 +233,42 @@
   $$('[data-gal]').forEach(gallery);
   setLang(html.lang); // aplica alt en inglés a las imágenes generadas
 
-  /* ---------- Reveal + medidores ---------- */
-  var rvs = $$('.rv');
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (!e.isIntersecting) return; var t = e.target; t.classList.add('in'); io.unobserve(t);
-        if (t.classList.contains('etapa')) { $('.meter i', t).style.width = $('.meter i', t).dataset.w + '%'; countUp($('.pct', t)); }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
-    rvs.forEach(function (r) { io.observe(r); });
-  } else rvs.forEach(function (r) { r.classList.add('in'); });
+  /* ---------- Reveal + medidores (arranca cuando se va la pantalla de carga) ---------- */
+  function startReveal() {
+    var rvs = $$('.rv');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return; var t = e.target; t.classList.add('in'); io.unobserve(t);
+          if (t.classList.contains('etapa')) { $('.meter i', t).style.width = $('.meter i', t).dataset.w + '%'; countUp($('.pct', t)); }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
+      rvs.forEach(function (r) { io.observe(r); });
+    } else rvs.forEach(function (r) { r.classList.add('in'); });
+  }
+
+  /* ---------- Pantalla de carga: espera a que se decodifiquen fotos, video y tipografía ---------- */
+  (function () {
+    var ld = $('#loader'), t0 = Date.now(), MIN = 1800, MAX = 9000, ended = false;
+    if (!ld) { html.classList.remove('is-loading'); startReveal(); return; }
+    html.classList.add('lock');
+    function decodeImgs() {
+      var imgs = $$('img').filter(function (i) { return i.closest('.hero, .facts, #proyecto') || i.loading !== 'lazy'; });
+      return Promise.all(imgs.map(function (i) { return (i.decode ? i.decode() : Promise.resolve()).catch(function () {}); }));
+    }
+    function finish() {
+      if (ended) return; ended = true;
+      ld.classList.add('done');
+      setTimeout(function () {
+        ld.classList.add('out'); html.classList.remove('is-loading', 'lock'); startReveal(); window.dispatchEvent(new Event('scroll'));
+        setTimeout(function () { if (ld.parentNode) ld.parentNode.removeChild(ld); }, 1000);
+      }, 450);
+    }
+    var ready = new Promise(function (res) { if (document.readyState === 'complete') res(); else window.addEventListener('load', res, { once: true }); })
+      .then(function () { return Promise.all([decodeImgs(), document.fonts ? document.fonts.ready : null]); });
+    ready.then(function () { setTimeout(finish, Math.max(0, MIN - (Date.now() - t0))); });
+    setTimeout(finish, MAX); // nunca bloquear el sitio
+  })();
 
   /* ---------- Video del predio (autoplay solo en vista) y mapa diferido ---------- */
   $$('video[data-autoplay]').forEach(function (v) {

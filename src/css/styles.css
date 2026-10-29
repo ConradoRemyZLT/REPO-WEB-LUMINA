@@ -87,6 +87,24 @@ html[lang="es"] .l-en,html[lang="en"] .l-es{display:none!important}
 .tag-glass{color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.32);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 @keyframes pulse{0%{box-shadow:0 0 0 0 currentColor}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
 
+/* ---------- Pantalla de carga (isologotipo Lumina) ---------- */
+.loader{position:fixed;inset:0;z-index:1000;background:var(--olive);color:#fff;display:flex;align-items:center;justify-content:center;
+  transition:opacity .9s var(--ease),visibility 0s linear .9s;animation:loaderFailsafe 0s linear 12s forwards}
+.loader.out{opacity:0;visibility:hidden}
+.loader-inner{display:flex;flex-direction:column;align-items:center;gap:clamp(28px,4vh,40px);width:min(360px,62vw)}
+.loader-logo{width:100%;animation:loaderLogo 1.4s var(--ease) .15s both}
+.loader-logo svg{width:100%;height:auto}
+.loader-bar{width:56%;height:1px;background:rgba(255,255,255,.28);overflow:hidden}
+.loader-bar i{display:block;height:100%;width:100%;background:#fff;transform:scaleX(0);transform-origin:left;animation:loaderBar 2.6s cubic-bezier(.3,.6,.2,1) .4s forwards}
+.loader.done .loader-bar i{animation:none;transform:scaleX(1);transition:transform .45s var(--ease)}
+.loader.out .loader-inner{transform:translateY(-10px);transition:transform .9s var(--ease)}
+@keyframes loaderLogo{from{opacity:0;clip-path:inset(0 100% 0 0);transform:translateY(8px)}to{opacity:1;clip-path:inset(0 0 0 0);transform:none}}
+@keyframes loaderBar{0%{transform:scaleX(0)}100%{transform:scaleX(.88)}}
+@keyframes loaderFailsafe{to{opacity:0;visibility:hidden}}
+html.lock,html.lock body{overflow:hidden}
+html.is-loading .hero-media img{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.loader-logo,.loader-bar i{animation:none}.loader-bar i{transform:scaleX(.88)}}
+
 /* ---------- Barra superior ---------- */
 .bar{position:fixed;inset:0 0 auto 0;height:var(--bar);z-index:50;color:#fff;transition:background .45s var(--ease),color .45s var(--ease),box-shadow .45s var(--ease)}
 .bar .wrap{height:100%;display:flex;align-items:center;gap:28px}
