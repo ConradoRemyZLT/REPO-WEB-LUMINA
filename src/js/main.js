@@ -190,7 +190,8 @@
 
   /* ---------- Avance de obra ---------- */
   var O = D.obra || {};
-  if (O.porcentajes) $('#obra-fuente').innerHTML = L(O.porcentajes.fuente_es + ' · ' + mes(O.porcentajes.fecha, 'es'), O.porcentajes.fuente_en + ' · ' + mes(O.porcentajes.fecha, 'en'));
+  var cap = function (s) { return s.charAt(0).toUpperCase() + s.slice(1); };
+  if (O.porcentajes) $('#obra-fuente').innerHTML = L(cap(mes(O.porcentajes.fecha, 'es')), mes(O.porcentajes.fecha, 'en'));
   var et = $('#etapas');
   (O.etapas || []).forEach(function (e, k) {
     var v = e.viviendas, rango = v[0] + (v.length > 1 ? '–' + v[v.length - 1] : '');
@@ -219,7 +220,7 @@
   });
   if (G.length) {
     var ult = G[0].fecha;
-    $('#obra-relev').innerHTML = L('Fotos actualizadas a ' + mes(ult, 'es') + ' · fuente: Jauke Desarrollos', 'Photos updated ' + mes(ult, 'en') + ' · source: Jauke Desarrollos');
+    $('#obra-relev').innerHTML = L('Fotos actualizadas a ' + mes(ult, 'es'), 'Photos updated ' + mes(ult, 'en'));
   }
   if (V.fecha) $('#vcard-date').innerHTML = L('Relevamiento de ' + mes(V.fecha, 'es'), mes(V.fecha, 'en') + ' survey');
   var vcard = $('#vcard');

@@ -44,7 +44,7 @@ Se edita siempre en `src/`, `links/` y las carpetas de recursos; nunca a mano `d
 
 ## Actualizar el avance de obra (cada informe de Jauke)
 
-1. En `src/data/obra.json`: cambiar `porcentajes.fecha` y el `avance` de cada etapa con los % que manda Franco Scaglione (no se calculan).
+1. En `src/data/obra.json`: cambiar `porcentajes.fecha` (mes que se muestra en la web, ej. Octubre 2026) y el `avance` de cada etapa con los % que manda Franco Scaglione (no se calculan).
 2. Próximas tareas de cada etapa: `trabajos_es` / `trabajos_en` y `tareas.mes` (mes para el que están programadas) (salen de "Tareas programadas" del informe).
 3. Fotos nuevas: WebP en `fotos/obra/AAAA-MM/` (sin agrandar las del informe) y agregarlas al principio de `galeria` con su `fecha` y epígrafe ES/EN. Video: en `video` (H.264, 960 px, 60 fps).
 4. `node build.js` y publicar `dist/index.html`.
@@ -62,7 +62,7 @@ Reglas: `exif_transpose` antes de escalar, LANCZOS, nunca deformar; PNG con alfa
 
 ## Fuentes de los datos
 
-- Textos, características, terminaciones y tipologías: brochure digital vigente (27/06/25) y su versión en inglés. El PDF en español es la versión en alta del brochure (Brochure_Digital_Lumina.pdf, Canva) comprimida a ~2,2 MB.
+- Textos, características, terminaciones y tipologías: brochure digital vigente (27/06/25) y su versión en inglés.
 - Superficie de cada lote: plano de numeración de casas de Jauke (SUP03).
 - % de avance por etapa: informe trimestral julio–septiembre 2026 (95 / 81 / 52). Próximas tareas y fotos de obra: informe de Jauke de septiembre 2026 (19/10/2026).
 - Vistas aéreas y video de obra: relevamiento de mayo 2026.

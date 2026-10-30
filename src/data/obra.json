@@ -1,9 +1,7 @@
 {
-  "_nota": "Estado de obra. Actualizar con cada informe de Jauke (Franco Scaglione). Los % por etapa los envía Jauke: no calcularlos. 'galeria' va de lo más nuevo a lo más viejo; cada foto lleva su fecha.",
+  "_nota": "Estado de obra. Actualizar con cada informe de Jauke (Franco Scaglione). Los % por etapa los envía Jauke: no calcularlos. 'galeria' va de lo más nuevo a lo más viejo; cada foto lleva su fecha. En la web solo se muestra el mes de actualización (porcentajes.fecha), sin fuente.",
   "porcentajes": {
-    "fecha": "2026-09",
-    "fuente_es": "Informe trimestral de avance",
-    "fuente_en": "Quarterly progress report"
+    "fecha": "2026-10"
   },
   "etapas": [
     {
